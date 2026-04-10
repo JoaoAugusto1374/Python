@@ -8,11 +8,7 @@ def adicionar_pessoa(lista, pessoa):
     
 
 def listar(lista):
-    if len(lista) == 0:
-        print("nenhuma pessoa encontrada")
-    else:
-        for pessoa in lista:
-            print(pessoa)
+    return lista
 
 #listar(pessoas)
 
@@ -25,15 +21,12 @@ def buscar_nome(lista, nome):
     
 
 def maiores_idade(lista):
-    encontrou = False
-    
+    maiores = []
     for p in lista:
         if p["idade"] >= 18:
-            print(p)
-            encontrou = True 
+            maiores.append(p)
     
-    if not encontrou:
-        print("Nenhum maior de idade")
+    return maiores
     
 
 #maiores_idade(pessoas)
@@ -62,7 +55,12 @@ while True:
                 pessoa = {"nome": nome, "idade": idade}
                 adicionar_pessoa(pessoas, pessoa)
             elif op == 2:
-                listar(pessoas)
+                listaPessoas = listar(pessoas)
+                if len(listaPessoas) == 0:
+                    print("Lista vazia!")
+                else:
+                    for p in listaPessoas:
+                        print(p)
             elif op == 3:
                 busca = input("Qual nome deseja buscar?: ")
                 resultado = buscar_nome(pessoas, busca)
@@ -71,7 +69,12 @@ while True:
                 else:
                     print(resultado)
             elif op == 4:
-                maiores_idade(pessoas)
+                result = maiores_idade(pessoas)
+                if len(result) == 0:
+                    print("Nenhum encontrado!")
+                else:
+                    for v in result:
+                        print(v)
         else:
             print("Digite uma opção no intervalo!")
     except ValueError:
